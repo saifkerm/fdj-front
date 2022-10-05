@@ -1,0 +1,22 @@
+<a href="#" (click)="backFn()" *ngIf="!displayTeamComp && displayPlayerComp">Back</a>
+<mat-grid-list cols="5" *ngIf="displayTeamComp && !displayPlayerComp">
+  <ng-container *ngIf="teams.length === 0; else elseTeamsTemplate">
+    <h2>Teams not found...</h2>
+  </ng-container>
+  <ng-template #elseTeamsTemplate >
+    <mat-grid-tile *ngFor="let team of teams" >
+      <mat-card-title-group>
+        <img
+          mat-card-sm-image
+          (click)="getPlayers(team)"
+          [width]="100"
+          [height]="100"
+          src="{{team.thumbnail}}"
+          alt="teamPhoto"
+        >
+      </mat-card-title-group>
+    </mat-grid-tile>
+  </ng-template>
+</mat-grid-list>
+
+<app-player *ngIf="!displayTeamComp && displayPlayerComp" [teamId]="selectedTeam?._id"></app-player>

@@ -1,0 +1,24 @@
+<mat-grid-list cols="4" >
+  <mat-grid-tile
+    *ngFor="let player of players"
+    [colspan]="1"
+    [rowspan]="1"
+  >
+    <mat-card>
+      <mat-card-content class="player-card-content">
+        <img
+          mat-card-image
+          src="{{player.thumbnail}}"
+          [width]="100"
+          [height]="100"
+          alt="player thumbnail">
+        <div>
+          <div><b>{{player.name}}</b></div>
+          <div>{{player.position}}</div>
+          <div>birthDate: {{player.born | date: 'YYY-MM-dd'}}</div>
+          <div>price: {{player.signin.amount | currency: player.signin.currency.toUpperCase() : 'symbol': '3.0' : 'fr'}}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

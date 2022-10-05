@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  FDJ_API_URI: 'PROD_API',
 };

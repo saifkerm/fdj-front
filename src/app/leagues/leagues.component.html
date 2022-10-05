@@ -1,0 +1,36 @@
+<mat-grid-list cols="1" rowHeight="50px">
+  <mat-grid-tile>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        placeholder="Search by league"
+        [(ngModel)]="selectedLeague"
+        [matAutocomplete]="auto"
+        #leagueSearchInput
+      >
+      <button
+        *ngIf="selectedLeague"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearSelection()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-autocomplete
+        [panelWidth]="400"
+        #auto="matAutocomplete"
+        [displayWith]="displayWith"
+      >
+        <mat-option *ngIf="isLoading" class="is-loading">Search...</mat-option>
+        <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let league of filteredLeagues" [value]="league">
+            <span><b>{{league.name}}</b></span>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<app-teams [league]="selectedLeague" *ngIf="selectedLeague?.name"></app-teams>
